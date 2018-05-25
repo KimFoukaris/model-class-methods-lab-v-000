@@ -33,7 +33,7 @@ class Boat < ActiveRecord::Base
 
   def self.with_three_classifications
     joins(:classifications)
-  .where(classifications: = "*")
+  .where(classifications: "*")
   .group('classification.id')
   .having("COUNT(classification.id)")
   end
