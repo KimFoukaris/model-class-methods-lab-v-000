@@ -31,4 +31,8 @@ class Boat < ActiveRecord::Base
     where(captain_id: nil)
   end
 
+  def self.with_three_classifications
+    where("name.classifications.count = ?", 3)
+  end
+
 end
