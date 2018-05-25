@@ -24,7 +24,7 @@ class Boat < ActiveRecord::Base
   end
 
   def self.sailboats
-    joins(:boat_classification).where("name = ?", "sailboat")
+    includes(:classifications).where(:classifications => {:name => "sailboat"})
   end
 
   def self.without_a_captain
