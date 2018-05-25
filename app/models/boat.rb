@@ -24,11 +24,18 @@ class Boat < ActiveRecord::Base
   end
 
   def self.sailboats
-    joins(:boat_classification).where("name = ?", "sailboat")
+    includes(:classifications).where(:classifications => {:name => "Sailboat"})
   end
 
   def self.without_a_captain
     where(captain_id: nil)
+  end
+
+  def self.with_three_classifications
+    joins(:classifications)
+  .where(classifications: {:name => "*"})
+  .group('boat_id')
+  .having("COUNT(classifications.name) = 3")
   end
 
 end
