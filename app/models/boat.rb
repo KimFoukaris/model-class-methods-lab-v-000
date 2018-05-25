@@ -32,7 +32,7 @@ class Boat < ActiveRecord::Base
   end
 
   def self.with_three_classifications
-    where("name.classifications.count = ?", 3)
+    classifications.having('COUNT(name) = 3').group('id')
   end
 
 end
