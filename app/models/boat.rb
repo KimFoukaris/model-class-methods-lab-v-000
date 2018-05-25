@@ -35,7 +35,7 @@ class Boat < ActiveRecord::Base
     joins(:classifications)
   .where(classifications: "*")
   .group('classification_id')
-  .having("COUNT(name) = 3")
+  .having("COUNT(classification.name) = 3")
   end
 
 end
